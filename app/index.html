@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise DevOps Architecture</title>
+    <meta name="description" content="A comprehensive enterprise DevOps project deployed using AWS, Jenkins, Docker, Kubernetes, and Terraform.">
+    <!-- Google Fonts for Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Link to custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated background elements -->
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo"><i class="fa-solid fa-server"></i> Dev<span>Ops</span>.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Architecture</a></li>
+            <li><a href="#stack">Tech Stack</a></li>
+            <li><a href="#pipeline">CI/CD Pipeline</a></li>
+        </ul>
+        <button class="deploy-btn"><i class="fa-solid fa-rocket"></i> Deploy Service</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <div class="badge"><i class="fa-solid fa-check-circle"></i> Production Ready</div>
+            <h1 class="gradient-text">Enterprise Cloud<br>Infrastructure</h1>
+            <p class="subtitle">A fully automated CI/CD pipeline, containerized microservices, and Infrastructure as Code deployed globally with zero downtime.</p>
+            
+            <div class="hero-buttons">
+                <button class="primary-btn">Explore Architecture</button>
+                <button class="secondary-btn"><i class="fa-brands fa-github"></i> Repository</button>
+            </div>
+            
+            <div class="system-status">
+                <div class="status-indicator">
+                    <span class="pulse"></span>
+                    Systems Operational
+                </div>
+                <div class="uptime">
+                    <span>Cluster: <b>Online</b></span>
+                    <span style="margin-left: 15px;">Uptime: <b>99.99%</b></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tech Stack Grid Section -->
+    <section id="stack" class="tech-stack">
+        <div class="section-header">
+            <h2>Core Technologies</h2>
+            <p>Built with industry-leading modern tools for scale and reliability</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- AWS Card -->
+            <div class="tech-card aws-card">
+                <div class="card-icon"><i class="fa-brands fa-aws"></i></div>
+                <h3>AWS</h3>
+                <p>Global cloud infrastructure provider ensuring high availability, scalable compute resources, and secure networking.</p>
+                <div class="tags">
+                    <span>EC2</span><span>S3</span><span>VPC</span>
+                </div>
+            </div>
+
+            <!-- Terraform Card -->
+            <div class="tech-card terraform-card">
+                <div class="card-icon"><i class="fa-solid fa-cube"></i></div>
+                <h3>Terraform</h3>
+                <p>Infrastructure as Code (IaC) enabling reproducible environments, version-controlled setups, and automated provisioning.</p>
+                <div class="tags">
+                    <span>IaC</span><span>HCL</span><span>Modules</span>
+                </div>
+            </div>
+
+            <!-- Jenkins Card -->
+            <div class="tech-card jenkins-card">
+                <div class="card-icon"><i class="fa-brands fa-jenkins"></i></div>
+                <h3>Jenkins</h3>
+                <p>Robust automation server driving our continuous integration and continuous deployment (CI/CD) pipelines.</p>
+                <div class="tags">
+                    <span>Pipelines</span><span>CI/CD</span><span>Groovy</span>
+                </div>
+            </div>
+
+            <!-- Docker Card -->
+            <div class="tech-card docker-card">
+                <div class="card-icon"><i class="fa-brands fa-docker"></i></div>
+                <h3>Docker</h3>
+                <p>Containerization engine ensuring consistent application environments from development straight to production.</p>
+                <div class="tags">
+                    <span>Images</span><span>Containers</span><span>Registry</span>
+                </div>
+            </div>
+
+            <!-- Kubernetes Card -->
+            <div class="tech-card k8s-card">
+                <div class="card-icon"><i class="fa-solid fa-dharmachakra"></i></div>
+                <h3>Kubernetes</h3>
+                <p>Container orchestration platform managing deployment, scaling, and automated load balancing of microservices.</p>
+                <div class="tags">
+                    <span>Clusters</span><span>Pods</span><span>Helm</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Pipeline Section -->
+    <section id="pipeline" class="pipeline-section">
+        <div class="section-header">
+            <h2>Deployment Pipeline Flow</h2>
+            <p>Live visualization of the CI/CD deployment process</p>
+        </div>
+        <div class="pipeline-visual">
+            <div class="stage completed">
+                <i class="fa-solid fa-code-commit"></i>
+                <span>Commit</span>
+            </div>
+            <div class="connector active"></div>
+            <div class="stage completed">
+                <i class="fa-solid fa-hammer"></i>
+                <span>Build</span>
+            </div>
+            <div class="connector active"></div>
+            <div class="stage completed">
+                <i class="fa-solid fa-vial"></i>
+                <span>Test</span>
+            </div>
+            <div class="connector active"></div>
+            <div class="stage running">
+                <i class="fa-solid fa-box"></i>
+                <span>Containerize</span>
+            </div>
+            <div class="connector"></div>
+            <div class="stage pending">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>Deploy K8s</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Enterprise DevOps Engineering. Crafted with modern web aesthetics.</p>
+    </footer>
+
+    <!-- Script for Dynamic Hover Effects on Cards -->
+    <script>
+        document.querySelectorAll('.tech-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

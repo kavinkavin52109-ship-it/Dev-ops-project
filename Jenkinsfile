@@ -4,13 +4,14 @@ pipeline {
     environment {
         DOCKER_HUB = "kavinkavin52109"
         IMAGE_NAME = "dev-ops-project"
+        TAG = "latest"
     }
 
     stages {
 
-        stage('Clone Repository') {
+        stage('Checkout Code') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/devops-project.git'
+                checkout scm
             }
         }
 
@@ -18,7 +19,7 @@ pipeline {
             steps {
                 dir('app') {
                     sh '''
-                        docker build -t $DOCKER_HUB/$IMAGE_NAME:latest .
+                        docker build -t $DOCKER_HUB/$IMAGE_NAME:$TAG .
                     '''
                 }
             }
@@ -26,15 +27,17 @@ pipeline {
 
         stage('Push Docker Image') {
             steps {
-                withDockerRegistry([credentialsId: 'dockerhub-creds', url: '']) {
-                    sh '''
-                        docker push $DOCKER_HUB/$IMAGE_NAME:latest
-                    '''
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                        sh '''
+                            docker push $DOCKER_HUB/$IMAGE_NAME:$TAG
+                        '''
+                    }
                 }
             }
         }
 
-        stage('Terraform Infrastructure Setup') {
+        stage('Terraform Setup') {
             steps {
                 dir('terraform') {
                     sh '''
@@ -70,7 +73,6 @@ pipeline {
         success {
             echo 'SUCCESS: Full DevOps pipeline deployed successfully!'
         }
-
         failure {
             echo 'FAILED: Check Jenkins console logs.'
         }

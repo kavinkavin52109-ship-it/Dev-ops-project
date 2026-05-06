@@ -36,7 +36,14 @@ pipeline {
                 }
             }
         }
-
+        stage('Debug PATH') {
+    steps {
+        sh '''
+            echo "PATH=$PATH"
+            which terraform || echo "terraform not found"
+        '''
+    }
+}
         stage('Terraform Setup') {
             steps {
                 dir('terraform') {

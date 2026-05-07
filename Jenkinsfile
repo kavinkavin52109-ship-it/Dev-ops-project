@@ -51,8 +51,8 @@ pipeline {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-crd',
-                    accessKeyVariable: '467685081836',
-                    secretKeyVariable: 'AKIAWZZBUALWKMQBFB2R'
+                    accessKeyVariable: 'AKIAWZZBUALWKMQBFB2R',
+                    secretKeyVariable: 'uZ6RtSQZn2JGuX3cnVCZxbeTLiRvPBvlBjhdqLg'
                 ]]) {
                     dir('terraform') {
                         sh '''

@@ -36,28 +36,34 @@ pipeline {
                 }
             }
         }
+
         stage('Debug PATH') {
-    steps {
-        sh '''
-            echo "PATH=$PATH"
-            which terraform || echo "terraform not found"
-        '''
-    }
-}
+            steps {
+                sh '''
+                    echo "PATH=$PATH"
+                    which terraform || echo "terraform not found"
+                '''
+            }
+        }
+
         stage('Terraform Setup') {
             steps {
-                  withCredentials([
-            aws(accessKeyVariable: '467685081836',
-                secretKeyVariable: 'AKIAWZZBUALWKMQBFB2R')
-        ]){
-                dir('terraform') {
-                    sh '''
-                        terraform init
-                        terraform apply -auto-approve
-                    '''
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    credentialsId: 'aws-crd',
+                    accessKeyVariable: '467685081836',
+                    secretKeyVariable: 'AKIAWZZBUALWKMQBFB2R'
+                ]]) {
+                    dir('terraform') {
+                        sh '''
+                            terraform init
+                            terraform apply -auto-approve
+                        '''
+                    }
                 }
             }
         }
+
         stage('Kubernetes Deployment') {
             steps {
                 dir('kubernetes') {
@@ -87,5 +93,4 @@ pipeline {
             echo 'FAILED: Check Jenkins console logs.'
         }
     }
-}
 }

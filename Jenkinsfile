@@ -46,6 +46,10 @@ pipeline {
 }
         stage('Terraform Setup') {
             steps {
+                  withCredentials([
+            aws(accessKeyVariable: '467685081836',
+                secretKeyVariable: 'AKIAWZZBUALWKMQBFB2R')
+        ]){
                 dir('terraform') {
                     sh '''
                         terraform init

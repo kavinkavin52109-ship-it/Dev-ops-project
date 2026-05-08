@@ -49,9 +49,10 @@ pipeline {
         stage('Terraform Setup') {
             steps {
                 withCredentials([[
+                    $class: 'UsernamePasswordMultiBinding',
                     credentialsId: 'aws-cred',
-                    accessKeyVariable: 'AKIAWZZBUALWMILTNBMR',
-                    secretKeyVariable: '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'
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
                 ]]) {
                     dir('terraform') {
                         sh '''

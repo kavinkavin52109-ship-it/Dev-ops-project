@@ -49,17 +49,13 @@ pipeline {
         stage('Terraform Setup') {
             steps {
                 withCredentials([[
-                    $class: 'AmazonWebServicesCredentialsBinding',
                     credentialsId: 'aws-cred',
                     accessKeyVariable: 'AKIAWZZBUALWMILTNBMR',
                     secretKeyVariable: '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'
                 ]]) {
                     dir('terraform') {
                         sh '''
-                         export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                         export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                          export AWS_DEFAULT_REGION=ap-south-1
-                            echo "Checking AWS"
                             aws sts get-caller-identity
                             terraform init
                             terraform apply -auto-approve

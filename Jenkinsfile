@@ -50,7 +50,7 @@ pipeline {
             steps {
                 withCredentials([[
                     $class: 'AmazonWebServicesCredentialsBinding',
-                    credentialsId: 'aws-crd',
+                    credentialsId: 'aws-cred',
                     accessKeyVariable: 'AKIAWZZBUALWMILTNBMR',
                     secretKeyVariable: '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'
                 ]]) {

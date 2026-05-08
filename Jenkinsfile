@@ -56,7 +56,9 @@ pipeline {
                 ]]) {
                     dir('terraform') {
                         sh '''
-                            terraform init
+                            terraform init 
+                            echo "Checking AWS"
+                            aws sts get-caller-identity
                             terraform apply -auto-approve
                         '''
                     }

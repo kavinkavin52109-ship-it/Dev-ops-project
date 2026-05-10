@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: devops-project
-        image: yourdockerhub/devops-project
+        image: kavinkavin52109/dev-ops-project
         ports:
         - containerPort: 80

@@ -36,36 +36,35 @@ pipeline {
                 }
             }
         }
+stage('Terraform Setup') {
+    steps {
 
-        stage('Debug PATH') {
-            steps {
+        withCredentials([
+            usernamePassword(
+                credentialsId: 'aws-cred',
+                usernameVariable: 'AWS_ACCESS_KEY_ID',
+                passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+            )
+        ]) {
+
+            dir('terraform') {
+
                 sh '''
-                    echo "PATH=$PATH"
-                    which terraform || echo "terraform not found"
+                    export AWS_DEFAULT_REGION=ap-south-1
+
+                    echo "Checking AWS Login..."
+                    aws sts get-caller-identity
+
+                    echo "Terraform Init..."
+                    terraform init
+
+                    echo "Terraform Apply..."
+                    terraform apply -auto-approve
                 '''
             }
         }
-
-        stage('Terraform Setup') {
-            steps {
-                withCredentials([[
-                    $class: 'UsernamePasswordMultiBinding',
-                    credentialsId: 'aws-cred',
-                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-                ]]) {
-                    dir('terraform') {
-                        sh '''
-                         export AWS_DEFAULT_REGION=ap-south-1
-                            aws sts get-caller-identity
-                            terraform init
-                            terraform apply -auto-approve
-                        '''
-                    }
-                }
-            }
-        }
-
+    }
+}
         stage('Kubernetes Deployment') {
             steps {
                 dir('kubernetes') {
